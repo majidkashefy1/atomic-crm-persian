@@ -76,3 +76,70 @@ export const defaultConfiguration: ConfigurationContextValue = {
   darkModeLogo: defaultDarkModeLogo,
   lightModeLogo: defaultLightModeLogo,
 };
+
+// Persian (fa) labels for the same configuration values.
+// `value` keys stay identical so existing DB rows keep working —
+// only the displayed `label` is translated. Admins can reset to these
+// from Settings when the UI locale is Persian.
+export const persianCompanySectors = [
+  { value: "communication-services", label: "خدمات ارتباطی" },
+  { value: "consumer-discretionary", label: "کالاهای مصرفی اختیاری" },
+  { value: "consumer-staples", label: "کالاهای مصرفی ضروری" },
+  { value: "energy", label: "انرژی" },
+  { value: "financials", label: "مالی" },
+  { value: "health-care", label: "بهداشت و درمان" },
+  { value: "industrials", label: "صنعتی" },
+  { value: "information-technology", label: "فناوری اطلاعات" },
+  { value: "materials", label: "مواد" },
+  { value: "real-estate", label: "املاک" },
+  { value: "utilities", label: "خدمات عمومی" },
+];
+
+export const persianDealStages = [
+  { value: "opportunity", label: "فرصت" },
+  { value: "proposal-sent", label: "پیشنهاد ارسال شد" },
+  { value: "in-negociation", label: "در حال مذاکره" },
+  { value: "won", label: "برده شد" },
+  { value: "lost", label: "باخته شد" },
+  { value: "delayed", label: "به تعویق افتاد" },
+];
+
+export const persianDealCategories = [
+  { value: "other", label: "سایر" },
+  { value: "copywriting", label: "تولید محتوا" },
+  { value: "print-project", label: "پروژه چاپی" },
+  { value: "ui-design", label: "طراحی رابط کاربری" },
+  { value: "website-design", label: "طراحی وب‌سایت" },
+];
+
+export const persianNoteStatuses = [
+  { value: "cold", label: "سرد", color: "#7dbde8" },
+  { value: "warm", label: "گرم", color: "#e8cb7d" },
+  { value: "hot", label: "داغ", color: "#e88b7d" },
+  { value: "in-contract", label: "در قرارداد", color: "#a4e87d" },
+];
+
+export const persianTaskTypes = [
+  { value: "none", label: "بدون نوع" },
+  { value: "email", label: "ایمیل" },
+  { value: "demo", label: "دمو" },
+  { value: "lunch", label: "ناهار" },
+  { value: "meeting", label: "جلسه" },
+  { value: "follow-up", label: "پیگیری" },
+  { value: "thank-you", label: "تشکر" },
+  { value: "ship", label: "ارسال" },
+  { value: "call", label: "تماس" },
+];
+
+export const persianDefaultConfiguration: ConfigurationContextValue = {
+  companySectors: persianCompanySectors,
+  currency: defaultCurrency,
+  dealCategories: persianDealCategories,
+  dealPipelineStatuses: defaultDealPipelineStatuses,
+  dealStages: persianDealStages,
+  noteStatuses: persianNoteStatuses,
+  taskTypes: persianTaskTypes,
+  title: "اتمیک CRM",
+  darkModeLogo: defaultDarkModeLogo,
+  lightModeLogo: defaultLightModeLogo,
+};

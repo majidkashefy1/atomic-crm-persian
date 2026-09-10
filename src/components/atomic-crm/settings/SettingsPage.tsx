@@ -6,6 +6,7 @@ import {
   Form,
   useGetList,
   useInput,
+  useLocaleState,
   useNotify,
   useTranslate,
 } from "ra-core";
@@ -26,7 +27,10 @@ import {
   useConfigurationUpdater,
   type ConfigurationContextValue,
 } from "../root/ConfigurationContext";
-import { defaultConfiguration } from "../root/defaultConfiguration";
+import {
+  defaultConfiguration,
+  persianDefaultConfiguration,
+} from "../root/defaultConfiguration";
 
 const SECTIONS = [
   {
@@ -189,6 +193,7 @@ const SettingsForm = () => {
 
 const SettingsFormFields = () => {
   const translate = useTranslate();
+  const [locale] = useLocaleState();
   const currencyChoices = useMemo(() => getCurrencyChoices(), []);
   const {
     watch,
@@ -472,15 +477,19 @@ const SettingsFormFields = () => {
             <Button
               type="button"
               variant="ghost"
-              onClick={() =>
+              onClick={() => {
+                const defaults =
+                  locale === "fa"
+                    ? persianDefaultConfiguration
+                    : defaultConfiguration;
                 reset({
-                  ...defaultConfiguration,
+                  ...defaults,
                   lightModeLogo: {
-                    src: defaultConfiguration.lightModeLogo,
+                    src: defaults.lightModeLogo,
                   },
-                  darkModeLogo: { src: defaultConfiguration.darkModeLogo },
-                })
-              }
+                  darkModeLogo: { src: defaults.darkModeLogo },
+                });
+              }}
             >
               <RotateCcw className="h-4 w-4 mr-1" />
               {translate("crm.settings.reset_defaults")}

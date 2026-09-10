@@ -6,10 +6,11 @@ afterEach(() => {
 });
 
 describe("i18nProvider", () => {
-  it("registers en and fr locales", () => {
+  it("registers en, fr and fa locales", () => {
     expect(i18nProvider.getLocales?.()).toEqual([
       { locale: "en", name: "English" },
       { locale: "fr", name: "Français" },
+      { locale: "fa", name: "فارسی" },
     ]);
   });
 
@@ -17,6 +18,12 @@ describe("i18nProvider", () => {
     await i18nProvider.changeLocale("fr");
 
     expect(i18nProvider.translate("crm.language")).toBe("Langue");
+  });
+
+  it("translates the language key in persian", async () => {
+    await i18nProvider.changeLocale("fa");
+
+    expect(i18nProvider.translate("crm.language")).toBe("زبان");
   });
 
   it("falls back to english for unknown locales", async () => {
@@ -52,6 +59,15 @@ describe("i18nProvider", () => {
     });
 
     expect(getInitialLocale()).toBe("fr");
+  });
+
+  it("uses browser persian locale when available", () => {
+    vi.stubGlobal("navigator", {
+      language: "fa-IR",
+      languages: ["fa-IR", "en-US"],
+    });
+
+    expect(getInitialLocale()).toBe("fa");
   });
 
   it("falls back to english when browser locale is unsupported", () => {

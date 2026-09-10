@@ -1,11 +1,14 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/vazirmatn";
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans:
+    "Vazirmatn Variable", "Inter Variable", ui-sans-serif, system-ui, "Tahoma",
+    sans-serif;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -184,7 +187,29 @@ input[type="time"] {
 }
 
 body {
-  font-family: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  font-family:
+    "Vazirmatn Variable", "Inter Variable", ui-sans-serif, system-ui, "Tahoma",
+    sans-serif;
+}
+
+/* Persian (RTL) refinements: Vazirmatn-first, fix letter-spacing for Arabic script */
+html[dir="rtl"] body {
+  font-family:
+    "Vazirmatn Variable", "Tahoma", ui-sans-serif, system-ui, sans-serif;
+  letter-spacing: 0 !important;
+  font-feature-settings: "ss01";
+}
+
+/* Numbers / latin fragments inside RTL stay readable */
+html[dir="rtl"] input,
+html[dir="rtl"] textarea {
+  text-align: right;
+}
+html[dir="rtl"] input[type="email"],
+html[dir="rtl"] input[type="url"],
+html[dir="rtl"] input[type="tel"],
+html[dir="rtl"] input::placeholder {
+  direction: rtl;
 }
 
 /* The mobile pull-to-refresh (see layout/PullToRefresh.tsx) owns the overscroll
